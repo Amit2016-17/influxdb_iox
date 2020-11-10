@@ -156,7 +156,7 @@ fn cmp(packers: &[Packers], a: usize, b: usize, sort_by: &[usize]) -> Ordering {
                 }
                 // if cmp equal then try next packer column.
             }
-            Packers::UtfString(p) => {
+            Packers::String(p) => {
                 let cmp = p.get(a).cmp(&p.get(b));
                 if cmp != Ordering::Equal {
                     return cmp;
@@ -414,7 +414,7 @@ mod test {
                     .map(|_| format!("{:?}", rng.gen_range(0, 20)))
                     .collect::<Vec<String>>(),
             );
-            let mut packers = vec![Packers::UtfString(packer)];
+            let mut packers = vec![Packers::String(packer)];
 
             sort(&mut packers, &[0]).unwrap();
 
